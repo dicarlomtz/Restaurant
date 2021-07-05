@@ -1,4 +1,4 @@
-package domain;
+package domain.product;
 
 import java.io.Serializable;
 import java.util.Base64;
@@ -12,16 +12,16 @@ import org.hibernate.annotations.GenericGenerator;
 import org.json.JSONObject;
 
 @Entity
-@Table( name = "products" )
+@Table(name = "products")
 public class Product implements Serializable {
-    
+
     @Id
-    @Column( name = "id_product" )
-    @GeneratedValue( generator = "increment" )
-    @GenericGenerator( name = "increment", strategy = "increment" )
+    @Column(name = "id_product")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Integer idProduct;
     private String title;
-    private String description;
+    private Double price;
     private Boolean available;
     private byte[] picture;
 
@@ -32,17 +32,17 @@ public class Product implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public Product(String title, String description, Boolean available, byte[] picture) {
+    public Product(String title, Double price, Boolean available, byte[] picture) {
         this.title = title;
-        this.description = description;
+        this.price = price;
         this.available = available;
         this.picture = picture;
     }
 
-    public Product(Integer idProduct, String title, String description, Boolean available, byte[] picture) {
+    public Product(Integer idProduct, String title, Double price, Boolean available, byte[] picture) {
         this.idProduct = idProduct;
         this.title = title;
-        this.description = description;
+        this.price = price;
         this.available = available;
         this.picture = picture;
     }
@@ -63,12 +63,12 @@ public class Product implements Serializable {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Boolean getAvailable() {
@@ -114,29 +114,29 @@ public class Product implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("Product{idProduct=").append(idProduct);
         sb.append(", title=").append(title);
-        sb.append(", description=").append(description);
+        sb.append(", price=").append(price);
         sb.append(", available=").append(available);
         sb.append(", picture=").append(picture);
         sb.append('}');
         return sb.toString();
     }
-    
-    public JSONObject toJSON(){
+
+    public JSONObject toJSON() {
         JSONObject productJSON = new JSONObject();
         productJSON.put("idProduct", getIdProduct());
         productJSON.put("title", getTitle());
-        productJSON.put("description", getDescription());
+        productJSON.put("price", getPrice());
         productJSON.put("available", getAvailable());
         return productJSON;
     }
-    
-    public static Product fromJSON(JSONObject productJSON){
+
+    public static Product fromJSON(JSONObject productJSON) {
         Product product = new Product();
         product.setTitle(productJSON.getString("title"));
-        product.setDescription(productJSON.getString("description"));
+        product.setPrice(productJSON.getDouble("price"));
         product.setAvailable(productJSON.getBoolean("available"));
         product.setPicture(Base64.getMimeDecoder().decode(productJSON.getString("picture")));
         return product;
     }
-    
+
 }

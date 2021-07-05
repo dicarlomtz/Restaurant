@@ -1,6 +1,7 @@
-package dao;
+package dao.product;
 
-import domain.Product;
+import dao.generic.GenericDAO;
+import domain.product.Product;
 import java.util.List;
 import javax.persistence.Query;
 

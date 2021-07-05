@@ -6,7 +6,7 @@
     
     <persistence-unit name="HibernateJpaPU">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>domain.Product</class>
+        <class>domain.product.Product</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/restaurant_db?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
             <property name="javax.persistence.jdbc.user" value="root"/>

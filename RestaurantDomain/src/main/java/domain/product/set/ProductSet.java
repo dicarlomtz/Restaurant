@@ -1,5 +1,6 @@
-package domain;
+package domain.product.set;
 
+import domain.product.Product;
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;

@@ -5,9 +5,9 @@
  */
 package test;
 
-import dao.ProductDAO;
-import domain.Product;
-import domain.ProductSet;
+import dao.product.ProductDAO;
+import domain.product.Product;
+import domain.product.set.ProductSet;
 import java.util.List;
 
 /**
