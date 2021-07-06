@@ -20,6 +20,13 @@ public class ProductDAO extends GenericDAO {
         Query query = em.createQuery(cmd);
         return query.getResultList();
     }
+    
+      public List<Product> listAllDaily() {
+        String cmd = "SELECT p FROM Product p WHERE p.daily = 1";
+        em = getEntityManager();
+        Query query = em.createQuery(cmd);
+        return query.getResultList();
+    }
 
     public void add(Product product) {
         try {

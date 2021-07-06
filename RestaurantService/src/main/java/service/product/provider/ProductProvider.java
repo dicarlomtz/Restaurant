@@ -13,12 +13,12 @@ public class ProductProvider {
     private ProductProvider() {
         this.dao = new ProductDAO();
     }
-    
-    public static final ProductProvider getInstance(){
-        if(pp == null){
+
+    public static final ProductProvider getInstance() {
+        if (pp == null) {
             pp = new ProductProvider();
         }
-        
+
         return pp;
     }
 
@@ -42,6 +42,12 @@ public class ProductProvider {
 
     public String getProductAvailableList() {
         ProductSet ps = new ProductSet(dao.listAllAvailable());
+        JSONObject productsJSON = ps.toJSON();
+        return productsJSON.toString(4);
+    }
+
+    public String getProductDailyList() {
+        ProductSet ps = new ProductSet(dao.listAllDaily());
         JSONObject productsJSON = ps.toJSON();
         return productsJSON.toString(4);
     }

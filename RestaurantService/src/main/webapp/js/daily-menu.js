@@ -1,14 +1,14 @@
-const allURL = 'products/all';
+const dailyURL = 'products/daily';
 const pictureURL = 'products/picture/';
 
 $(document).ready(init);
 
 function init() {
-    fetchProducts();
+    fetchProductsDaily();
 }
 
-function fetchProducts() {
-    obtainData(allURL, 'GET', fetchProductsCallback);
+function fetchProductsDaily() {
+    obtainData(dailyURL, 'GET', fetchProductsCallback);
 }
 
 function fetchProductsCallback(data) {

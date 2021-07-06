@@ -46,6 +46,14 @@ public class ProductRestAPI {
         return Response.ok(ps).build();
     }
 
+    @GET
+    @Path("daily/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductDailyList() {
+        String ps = ProductProvider.getInstance().getProductDailyList();
+        return Response.ok(ps).build();
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)

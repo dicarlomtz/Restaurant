@@ -23,6 +23,7 @@ public class Product implements Serializable {
     private String title;
     private Double price;
     private Boolean available;
+    private Boolean daily;
     private byte[] picture;
 
     public Product() {
@@ -32,19 +33,21 @@ public class Product implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public Product(String title, Double price, Boolean available, byte[] picture) {
+    public Product(String title, Double price, Boolean available, Boolean daily, byte[] picture) {
         this.title = title;
         this.price = price;
         this.available = available;
         this.picture = picture;
+        this.daily = daily;
     }
 
-    public Product(Integer idProduct, String title, Double price, Boolean available, byte[] picture) {
+    public Product(Integer idProduct, String title, Double price, Boolean available, Boolean daily, byte[] picture) {
         this.idProduct = idProduct;
         this.title = title;
         this.price = price;
         this.available = available;
         this.picture = picture;
+        this.daily = daily;
     }
 
     public Integer getIdProduct() {
@@ -77,6 +80,14 @@ public class Product implements Serializable {
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public Boolean getDaily() {
+        return daily;
+    }
+
+    public void setDaily(Boolean daily) {
+        this.daily = daily;
     }
 
     public byte[] getPicture() {
@@ -116,6 +127,7 @@ public class Product implements Serializable {
         sb.append(", title=").append(title);
         sb.append(", price=").append(price);
         sb.append(", available=").append(available);
+        sb.append(", daily=").append(daily);
         sb.append(", picture=").append(picture);
         sb.append('}');
         return sb.toString();
@@ -127,6 +139,7 @@ public class Product implements Serializable {
         productJSON.put("title", getTitle());
         productJSON.put("price", getPrice());
         productJSON.put("available", getAvailable());
+         productJSON.put("daily", getDaily());
         return productJSON;
     }
 
@@ -135,6 +148,7 @@ public class Product implements Serializable {
         product.setTitle(productJSON.getString("title"));
         product.setPrice(productJSON.getDouble("price"));
         product.setAvailable(productJSON.getBoolean("available"));
+        product.setDaily(productJSON.getBoolean("daily"));
         product.setPicture(Base64.getMimeDecoder().decode(productJSON.getString("picture")));
         return product;
     }
