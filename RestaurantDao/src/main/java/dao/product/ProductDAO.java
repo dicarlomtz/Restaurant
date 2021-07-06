@@ -13,18 +13,34 @@ public class ProductDAO extends GenericDAO {
         Query query = em.createQuery(cmd);
         return query.getResultList();
     }
-    
+
     public List<Product> listAllAvailable() {
         String cmd = "SELECT p FROM Product p WHERE p.available = 1";
         em = getEntityManager();
         Query query = em.createQuery(cmd);
         return query.getResultList();
     }
-    
-      public List<Product> listAllDaily() {
+
+    public List<Product> listAllDaily() {
         String cmd = "SELECT p FROM Product p WHERE p.daily = 1";
         em = getEntityManager();
         Query query = em.createQuery(cmd);
+        return query.getResultList();
+    }
+
+    public List<Product> listAllAvailableParameter(String parameter) {
+        String cmd = "SELECT p FROM Product p WHERE p.available = 1 AND UPPER(p.title) LIKE :parPtr";
+        em = getEntityManager();
+        Query query = em.createQuery(cmd);
+        query.setParameter("parPtr", "%" + parameter.toUpperCase() + "%");
+        return query.getResultList();
+    }
+
+    public List<Product> listAllDailyParameter(String parameter) {
+        String cmd = "SELECT p FROM Product p WHERE p.daily = 1 AND UPPER(p.title) LIKE :parPtr";
+        em = getEntityManager();
+        Query query = em.createQuery(cmd);
+        query.setParameter("parPtr", "%" + parameter.toUpperCase() + "%");
         return query.getResultList();
     }
 

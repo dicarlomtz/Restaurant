@@ -51,6 +51,18 @@ public class ProductProvider {
         JSONObject productsJSON = ps.toJSON();
         return productsJSON.toString(4);
     }
+    
+     public String getProductAvailableListParameter(String parameter) {
+        ProductSet ps = new ProductSet(dao.listAllAvailableParameter(parameter));
+        JSONObject productsJSON = ps.toJSON();
+        return productsJSON.toString(4);
+    }
+
+    public String getProductDailyListParameter(String parameter) {
+        ProductSet ps = new ProductSet(dao.listAllDailyParameter(parameter));
+        JSONObject productsJSON = ps.toJSON();
+        return productsJSON.toString(4);
+    }
 
     public void addProduct(String productJSON) {
         Product product = Product.fromJSON(new JSONObject(productJSON));

@@ -1,10 +1,19 @@
-const allURL = 'products/all';
+const allURL = 'products/available';
 const pictureURL = 'products/picture/';
 
 $(document).ready(init);
 
 function init() {
     fetchProducts();
+    initEvents();
+}
+
+function initEvents(){
+    let refBtnSearch = document.getElementById("basic-addon2");
+    
+    if(refBtnSearch){
+        refBtnSearch.addEventListener("click", search);
+    }
 }
 
 function fetchProducts() {
@@ -80,4 +89,23 @@ function fetchProductsCallback(data) {
         });
     }
 
+}
+
+function search() {
+
+    let refSearchPar = document.getElementById("searchParameter");
+
+    if (refSearchPar && refSearchPar.value !== "") {
+        let url = allURL + "/" + refSearchPar.value;
+        obtainData(url, 'GET', searchCallBack);
+    }
+}
+
+function searchCallBack(data) {
+    let refMenu = document.getElementById("menu");
+    
+    if(refMenu){
+        refMenu.innerHTML = "";
+        fetchProductsCallback(data);
+    }
 }

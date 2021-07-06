@@ -13,7 +13,7 @@ import service.product.provider.ProductProvider;
 
 @Path("products")
 public class ProductRestAPI {
-
+    
     @GET
     @Path("{idProduct}/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -21,7 +21,7 @@ public class ProductRestAPI {
         String product = ProductProvider.getInstance().getProduct(idProduct);
         return Response.ok(product).build();
     }
-
+    
     @GET
     @Path("picture/{idProduct}/")
     @Produces("image/png")
@@ -29,7 +29,7 @@ public class ProductRestAPI {
         byte[] picture = ProductProvider.getInstance().getProductPicture(idProduct);
         return Response.ok(picture).build();
     }
-
+    
     @GET
     @Path("all/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,7 +37,7 @@ public class ProductRestAPI {
         String ps = ProductProvider.getInstance().getProductList();
         return Response.ok(ps).build();
     }
-
+    
     @GET
     @Path("available/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,7 +45,7 @@ public class ProductRestAPI {
         String ps = ProductProvider.getInstance().getProductAvailableList();
         return Response.ok(ps).build();
     }
-
+    
     @GET
     @Path("daily/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,7 +53,23 @@ public class ProductRestAPI {
         String ps = ProductProvider.getInstance().getProductDailyList();
         return Response.ok(ps).build();
     }
-
+    
+    @GET
+    @Path("available/{parameter}/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductAvailableListParameter(@PathParam("parameter") String parameter) {
+        String ps = ProductProvider.getInstance().getProductAvailableListParameter(parameter);
+        return Response.ok(ps).build();
+    }
+    
+    @GET
+    @Path("daily/{parameter}/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getProductDailyListParameter(@PathParam("parameter") String parameter) {
+        String ps = ProductProvider.getInstance().getProductDailyListParameter(parameter);
+        return Response.ok(ps).build();
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)

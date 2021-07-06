@@ -5,6 +5,15 @@ $(document).ready(init);
 
 function init() {
     fetchProductsDaily();
+    initEvents();
+}
+
+function initEvents(){
+    let refBtnSearch = document.getElementById("basic-addon2");
+    
+    if(refBtnSearch){
+        refBtnSearch.addEventListener("click", search);
+    }
 }
 
 function fetchProductsDaily() {
@@ -58,7 +67,7 @@ function fetchProductsCallback(data) {
             titleDiv.appendChild(title);
             wrapperDiv.appendChild(titleDiv);
 
-            //F:Title   
+            //F:Title
 
             //I:Price
 
@@ -80,4 +89,23 @@ function fetchProductsCallback(data) {
         });
     }
 
+}
+
+function search() {
+
+    let refSearchPar = document.getElementById("searchParameter");
+
+    if (refSearchPar && refSearchPar.value !== "") {
+        let url = dailyURL + "/" + refSearchPar.value;
+        obtainData(url, 'GET', searchCallBack);
+    }
+}
+
+function searchCallBack(data) {
+    let refMenu = document.getElementById("menu");
+    
+    if(refMenu){
+        refMenu.innerHTML = "";
+        fetchProductsCallback(data);
+    }
 }
