@@ -1,6 +1,8 @@
 const allURL = 'products/all';
 const pictureURL = 'products/picture/';
 
+$(document).ready(init);
+
 function init() {
     fetchProducts();
 }
@@ -19,9 +21,9 @@ function fetchProductsCallback(data) {
         products.forEach((product) => {
             let wrapperDiv = document.createElement('DIV');
 
-            wrapperDiv.setAttribute("class", "card");
-            wrapperDiv.setAttribute("style", "width: 18rem;");
-            wrapperDiv.classList.toggle("col");
+            wrapperDiv.setAttribute("class", "col");
+            wrapperDiv.setAttribute("style", "width: 15rem;");
+            wrapperDiv.classList.toggle("card");
             wrapperDiv.classList.toggle("m-3");
             wrapperDiv.classList.toggle("p-3");
 
